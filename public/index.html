@@ -7,15 +7,19 @@
   <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <nav>
+  <nav id="nav">
     <img src="./images/logo 1.svg" alt="logo">
     <p>Home</p>
-    <a href="./past-winners">Past Winners</a>
-    <a href="./current-standings">Current Standings</a>
-    <a href="./about">About</a>
+    <a href="./past-winners.html">Past Winners</a>
+    <a href="./current-standings.html">Current Standings</a>
+    <a href="./about.html">About</a>
+    <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
+      <i class="fa fa-bars"></i>
+    </a>
   </nav>
   <h1>Trivia Time With Michael!... <span class="purple-text">Ding!</span></h1>
   <img class="ding" src="./images/image 1.jpg" alt="Ding">
@@ -45,6 +49,7 @@
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script src="./app.js"></script>
   <script>
 
     const today = moment().format('YYYY-MM-DD')
@@ -101,6 +106,7 @@
     document.getElementById('revealJeopardy').addEventListener('click', () => {
       document.getElementById('jeopardyQuestion').style.display = 'block'
     })
+
   </script>
 </body>
 </html>

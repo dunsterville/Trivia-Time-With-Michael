@@ -64,6 +64,11 @@ nav {
   min-width: 320px;
   margin: 20px auto 60px;
   margin-bottom: 60px;
+  overflow: hidden;
+}
+
+nav .icon {
+  display: none;
 }
 
 nav img {
@@ -75,7 +80,8 @@ nav a, nav p {
 }
 
 .ding, .container {
-  width: 524px;
+  max-width: 524px;
+  width: 90%;
   display: block;
   margin: 45px auto;
 }
@@ -84,6 +90,37 @@ nav a, nav p {
   display: none;
 }
 
+@media only screen and (max-width: 650px) {
+  nav {
+    display: block;
+  }
 
+  nav a, nav p {
+    display: none;
+  }
 
+  nav .icon {
+    float: right;
+    display: block;
+    margin-top: 20px;
+  }
+
+  nav.responsive {
+    position: relative;
+  }
+
+  nav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    margin-top: 20px;
+  }
+
+  nav.responsive a, nav.responsive a {
+    margin-top: 15px;
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
 
