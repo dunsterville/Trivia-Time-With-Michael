@@ -1,0 +1,80 @@
+html, body {
+  background-color: #151522;
+  font-family: open sans;
+  color: white;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 36px;
+  text-align: center;
+  margin: auto;
+}
+
+h2 { 
+  font-weight: 400;
+  font-size: 24px;
+}
+
+h4 {
+  font-weight: 300;
+  font-size: 20px;
+  margin: 8px 0;
+}
+
+h5 {
+  font-weight: 300;
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+h6 {
+  font-weight: 300;
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+a {
+  color: #e7e7e7;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+p, a {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.purple-text, .reveal {
+  color: #6979f8
+}
+
+nav {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 80%;
+  min-width: 320px;
+  margin: 20px auto 60px;
+  margin-bottom: 60px;
+}
+
+nav img {
+  margin-right: 20px;
+}
+
+nav a, nav p {
+  margin-right: 15px;
+}
+
+.ding, .container {
+  width: 524px;
+  display: block;
+  margin: 45px auto;
+}
+
+
+

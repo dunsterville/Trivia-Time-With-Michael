@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TTWM</title>
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <nav>
+    <img src="./images/logo 1.svg" alt="logo">
+    <p>Home</p>
+    <a href="./past-winners">Past Winners</a>
+    <a href="./current-standings">Current Standings</a>
+    <a href="./about">About</a>
+  </nav>
+  <h1>Trivia Time With Michael!... <span class="purple-text">Ding!</span></h1>
+  <img class="ding" src="./images/image 1.jpg" alt="Ding">
+
+  <div class="container">
+    <h2>Last Months Winners</h2>
+    <h4>1st Place with $11,200 Mike</h4>
+    <h5>2nd Place with $10,400 Tiff</h5>
+    <h6>3rd Plave with $4,400 Matt</h6>
+  </div>
+
+  <div class="container">
+    <h2>Todays Trivia:</h2>
+    <h4 id="todaysTrivia"></h4>
+    <p class="reveal" id="revealTrivia">Reveal Answer</p>
+  </div>
+
+  <div class="container">
+    <h2>Todays Jeopardy:</h2>
+    <h4>Category: <span id="todaysJeopardyCategory"></span></h4>
+    <h4>Answer: <span id="todaysJeopardyAnswer"></span></h4>
+    <p class="reveal" id="revealJeopardy">Reveal Answer</p>
+  </div>
+</body>
+</html>
