@@ -6,3 +6,9 @@ document.getElementById('hamburgerMenu').addEventListener('click', () => {
     x.className = ''
   }
 })
+
+
+document.getElementById('themeSong').addEventListener('click', () => {
+  let audio = document.getElementById('audio')
+  audio.play()
+})

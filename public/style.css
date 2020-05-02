@@ -49,10 +49,7 @@ p, a {
 }
 
 .purple-text, .reveal {
-  color: #6979f8
-}
-
-.reveal {
+  color: #6979f8;
   cursor: pointer;
 }
 
