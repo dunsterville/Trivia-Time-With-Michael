@@ -76,5 +76,10 @@ nav a, nav p {
   margin: 45px auto;
 }
 
+.answer {
+  display: none;
+}
+
+
 
 

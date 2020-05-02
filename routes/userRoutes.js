@@ -3,9 +3,9 @@ const { User } = require('../models')
 module.exports = app => {
   
   // Get all Score (Not sure if we need this if comments are gonna be populated onto the Polls, leaving it in for testing -Michael)
-  app.get('/api/User', (req, res) => {
+  app.get('/api/user', (req, res) => {
     User.find()
-      .populate('score')
+      .populate({path: 'scores'})
       .then(user => res.json(user))
       .catch(err => console.error(err))
   })
@@ -18,14 +18,14 @@ module.exports = app => {
   })
 
   // Update one User
-  app.post('/api/user/:id', (req, res) => {
+  app.put('/api/user/:id', (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Delete one User
-  app.post('api/user/:id',  (req, res) => {
+  app.delete('/api/user/:id',  (req, res) => {
     User.findByIdAndDelete(req.params.id)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))

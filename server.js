@@ -9,7 +9,7 @@ app.use(express.static(join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-//require('./routes')(app)
+require('./routes')(app)
 
 require('mongoose').connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost:27017/trivia_time_with_michael', {
   useCreateIndex: true,

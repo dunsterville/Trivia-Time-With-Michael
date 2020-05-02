@@ -18,14 +18,14 @@ module.exports = app => {
   })
 
   // Update one Score
-  app.post('/api/score/:id', (req, res) => {
+  app.put('/api/score/:id', (req, res) => {
     Score.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Delete one Score
-  app.post('api/score/:id',  (req, res) => {
+  app.delete('/api/score/:id',  (req, res) => {
     Score.findByIdAndDelete(req.params.id)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))

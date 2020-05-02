@@ -17,14 +17,14 @@ module.exports = app => {
   })
 
   // Update one Trivia
-  app.post('/api/trivia/:id', (req, res) => {
+  app.put('/api/trivia/:id', (req, res) => {
     Trivia.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Delete one Trivia
-  app.post('api/trivia/:id',  (req, res) => {
+  app.delete('/api/trivia/:id',  (req, res) => {
     Trivia.findByIdAndDelete(req.params.id)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))

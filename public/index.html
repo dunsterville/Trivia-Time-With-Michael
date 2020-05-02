@@ -31,13 +31,76 @@
     <h2>Todays Trivia:</h2>
     <h4 id="todaysTrivia"></h4>
     <p class="reveal" id="revealTrivia">Reveal Answer</p>
+    <p class="answer" id="triviaAnswer"></p>
   </div>
 
   <div class="container">
     <h2>Todays Jeopardy:</h2>
     <h4>Category: <span id="todaysJeopardyCategory"></span></h4>
+    <h4>Worth: <span id="todaysJeopardyAmount"></span></h4>
     <h4>Answer: <span id="todaysJeopardyAnswer"></span></h4>
-    <p class="reveal" id="revealJeopardy">Reveal Answer</p>
+    <p class="reveal" id="revealJeopardy">Reveal Question</p>
+    <p class="answer" id="jeopardyQuestion"></p>
   </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script>
+
+    const today = moment().format('YYYY-MM-DD')
+    const tomorrow = moment().add(1, 'days')
+    const yesterday = moment().subtract(1, 'days')
+    const triviaTime = ' 11:00'
+
+    // Get todays Trivia
+    axios.get('/api/trivia')
+      .then(({data}) => {
+        data.forEach(trivia => {
+          console.log(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(today + triviaTime) && !(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow)))
+          if (moment().isAfter(today + triviaTime)) {
+            if (moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(today, 'day') && !(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
+              document.getElementById('todaysTrivia').textContent = trivia.trivia
+              document.getElementById('triviaAnswer').textContent = trivia.answer
+            }
+          } else {
+            if (moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(yesterday, 'day') && !(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
+              document.getElementById('todaysTrivia').textContent = trivia.trivia
+              document.getElementById('triviaAnswer').textContent = trivia.answer
+            }
+          }
+        });
+      })
+
+    // Get todays Jeopardy
+    axios.get('/api/jeopardy')
+      .then(({data}) => {
+        data.forEach(jeopardy => {
+          console.log(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(today + triviaTime) && !(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow)))
+          if (moment().isAfter(today + triviaTime)) {
+            if (moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(today, 'day') && !(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
+              document.getElementById('todaysJeopardyCategory').textContent = jeopardy.category
+              document.getElementById('todaysJeopardyAnswer').textContent = jeopardy.answer
+              document.getElementById('todaysJeopardyAmount').textContent = jeopardy.amount
+              document.getElementById('jeopardyQuestion').textContent = jeopardy.question
+            }
+          } else {
+            if (moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(yesterday, 'day') && !(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
+              document.getElementById('todaysJeopardyCategory').textContent = jeopardy.category
+              document.getElementById('todaysJeopardyAnswer').textContent = jeopardy.answer
+              document.getElementById('todaysJeopardyAmount').textContent = jeopardy.amount
+              document.getElementById('jeopardyQuestion').textContent = jeopardy.question
+            }
+          }
+        });
+      })
+
+    document.getElementById('revealTrivia').addEventListener('click', () => {
+      document.getElementById('triviaAnswer').style.display = 'block'
+    })
+
+    document.getElementById('revealJeopardy').addEventListener('click', () => {
+      document.getElementById('jeopardyQuestion').style.display = 'block'
+    })
+  </script>
 </body>
 </html>

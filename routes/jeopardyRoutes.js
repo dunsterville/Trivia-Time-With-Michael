@@ -17,14 +17,14 @@ module.exports = app => {
   })
 
   // Update one Jeopardy
-  app.post('/api/jeopardy/:id', (req, res) => {
+  app.put('/api/jeopardy/:id', (req, res) => {
     Jeopardy.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Delete one Jeopardy
-  app.post('api/jeopardy/:id',  (req, res) => {
+  app.delete('/api/jeopardy/:id',  (req, res) => {
     Jeopardy.findByIdAndDelete(req.params.id)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
