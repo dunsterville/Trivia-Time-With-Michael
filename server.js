@@ -11,6 +11,11 @@ app.use(express.json())
 
 //require('./routes')(app)
 
-db.sync()
+require('mongoose').connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost:27017/trivia_time_with_michael', {
+  useCreateIndex: true,
+  useFindAndModify: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => app.listen(process.env.PORT))
   .catch(e => console.log(e))
