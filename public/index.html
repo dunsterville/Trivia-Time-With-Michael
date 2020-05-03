@@ -62,7 +62,6 @@
     axios.get('/api/trivia')
       .then(({data}) => {
         data.forEach(trivia => {
-          console.log(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(today + triviaTime) && !(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow)))
           if (moment().isAfter(today + triviaTime)) {
             if (moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(today, 'day') && !(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
               document.getElementById('todaysTrivia').textContent = trivia.trivia
@@ -81,7 +80,6 @@
     axios.get('/api/jeopardy')
       .then(({data}) => {
         data.forEach(jeopardy => {
-          console.log(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(today + triviaTime) && !(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow)))
           if (moment().isAfter(today + triviaTime)) {
             if (moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(today, 'day') && !(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
               document.getElementById('todaysJeopardyCategory').textContent = jeopardy.category
