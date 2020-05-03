@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TTWM</title>
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <nav id="nav">
+    <img src="./images/logo 1.svg" alt="logo">
+    <a href="./">Home</a>
+    <p>Standings</p>
+    <a href="./about.html">About</a>
+    <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
+      <i class="fa fa-bars"></i>
+    </a>
+  </nav>
+  <h1>Standings</h1>
+  <div class="container">
+    <h2>Current</h2>
+    <div id="currentStandings">
+
+    </div>
+
+    <h2>All Time</h2>
+    <div id="allTimeStandings">
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script src="./app.js"></script>
+  <script>
+
+    let currentStandings = []
+    let allTimeStandings = []
+
+    axios.get('./api/user')
+      .then(({data}) => {
+        data.forEach(user => {
+          let playerScore = 0
+          let currentScore = 0
+          user.scores.forEach(score => {
+            if (moment().isSame(moment(score.date, 'YYYY-MM-DDTHH:mm:ss.SSS'), 'month')) {
+              currentScore += score.score
+            }
+            playerScore += score.score
+          })
+
+          let allTimePlayer = {name: user.name, score: playerScore}
+          allTimeStandings.push(allTimePlayer)
+
+          let currentPlayer = {name: user.name, score: currentScore}
+          currentStandings.push(currentPlayer)
+        })
+
+        currentStandings.sort((a,b) => a.score > b.score ? -1 : 1 )
+        allTimeStandings.sort((a,b) => a.score > b.score ? -1 : 1 )
+
+        currentStandings.forEach(playerScore => {
+          let newElement = document.createElement('p')
+          newElement.textContent = `${playerScore.name}: ${playerScore.score}`
+          document.getElementById('currentStandings').append(newElement)
+        })
+
+        allTimeStandings.forEach(playerScore => {
+          let newElement = document.createElement('p')
+          newElement.textContent = `${playerScore.name}: ${playerScore.score}`
+          document.getElementById('allTimeStandings').append(newElement)
+        })
+      })
+
+  </script>
+</body>
+</html>
