@@ -15,7 +15,7 @@
     <img src="./images/logo 1.svg" alt="logo">
     <a href="./">Home</a>
     <p>Standings</p>
-    <a href="./about.html">About</a>
+    <a href="./about">About</a>
     <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
       <i class="fa fa-bars"></i>
     </a>
@@ -65,13 +65,13 @@
 
         currentStandings.forEach(playerScore => {
           let newElement = document.createElement('p')
-          newElement.textContent = `${playerScore.name}: ${playerScore.score}`
+          newElement.textContent = `${playerScore.name}: ${Math.sign(playerScore.score) === -1 ? '-$' + Math.abs(playerScore.score).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '$' + (playerScore.score).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
           document.getElementById('currentStandings').append(newElement)
         })
 
         allTimeStandings.forEach(playerScore => {
           let newElement = document.createElement('p')
-          newElement.textContent = `${playerScore.name}: ${playerScore.score}`
+          newElement.textContent = `${playerScore.name}: ${Math.sign(playerScore.score) === -1 ? '-$' + Math.abs(playerScore.score).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '$' + (playerScore.score).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
           document.getElementById('allTimeStandings').append(newElement)
         })
       })
