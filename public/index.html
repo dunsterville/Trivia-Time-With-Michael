@@ -3,49 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:image" content="./images/og_image.png" />
+  <meta property="og:description" content="It's Trivia Time With Michael!... Ding!" />
   <title>TTWM</title>
   <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./normalize.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <nav id="nav">
-    <img src="./images/logo 1.svg" alt="logo">
-    <p>Home</p>
-    <a href="./standings">Standings</a>
-    <a href="./about">About</a>
-    <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
-      <i class="fa fa-bars"></i>
-    </a>
+    <div class="container">
+      <a href="./standings">Standings</a>
+      <a href="./about">About</a>
+      <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
+        <img src="./images/hamburger.svg" alt="hamburger menu">
+      </a>
+    </div>
   </nav>
-  <h1>Trivia Time With Michael!... <span class="purple-text" id="themeSong">Ding!</span></h1>
+  <img class="desktop-logo-container" src="./images/background.png">
+  <div class="container">
+    <img class="logo" src="./images/TTWMLogo.svg" alt="logo">
+  </div>
+
+  <div class="container headline">
+    <img class="michael" src="./images/michael.png" alt="michael">
+    <h1><span class="yellow-text">Trivia time</span><br>with Michael!</h1>
+    <img class="ding" id="themeSong" src="./images/ding.svg" alt="ding!">
+  </div>
   <audio id="audio" src="./sounds/Trivia Time With Michael.mp3"></audio>
-  <img class="ding" src="./images/image 1.jpg" alt="Ding">
 
-  <div class="container">
-    <h2>Last Months Winners</h2>
-    <h4>1st Place with $11,200 Mike</h4>
-    <h5>2nd Place with $10,400 Tiff</h5>
-    <h6>3rd Place with $4,400 Matt</h6>
+  <div class="image-container container">
+    <img class="circle-dots" src="./images/circledots.svg" alt="background">
+    <img class="square-dots" src="./images/squaredots.svg" alt="background">
+    <img class="sprinkles" src="./images/Sprinkles.svg" alt="background">
+    <div class="main display-flex">
+      <div class="card">
+        <h2>Last Months Winners</h2>
+        <div class="display-flex">
+          <img class="first" src="./images/1st.png" alt="1st">
+          <h3>$11,200</h3>
+        </div>
+        <div class="horizontal-line"></div>
+        <div class="display-flex">
+          <img class="not-first" src="./images/2nd.png" alt="2nd">
+          <h3>$10,400</h3>
+        </div>
+        <div class="horizontal-line"></div>
+        <div class="display-flex">
+          <img class="not-first" src="./images/3rd.png" alt="3rd">
+          <h3>$4,400</h3>
+        </div>
+      </div>
+
+      <div class="card trivia">
+        <h2>Todays Trivia:</h2>
+        <h4 id="todaysTrivia"></h4>
+        <p class="reveal" id="revealTrivia">Reveal Answer</p>
+        <p class="answer" id="triviaAnswer"></p>
+      </div>
+
+      <div class="card jeopardy">
+        <h2>Todays Jeopardy:</h2>
+        <h4>Category: <span id="todaysJeopardyCategory"></span></h4>
+        <h4>Worth: <span id="todaysJeopardyAmount"></span></h4>
+        <h4>Answer: <span id="todaysJeopardyAnswer"></span></h4>
+        <p class="reveal" id="revealJeopardy">Reveal Question</p>
+        <p class="answer" id="jeopardyQuestion"></p>
+      </div>
+    </div>
+    
   </div>
 
-  <div class="container">
-    <h2>Todays Trivia:</h2>
-    <h4 id="todaysTrivia"></h4>
-    <p class="reveal" id="revealTrivia">Reveal Answer</p>
-    <p class="answer" id="triviaAnswer"></p>
-  </div>
+  <p class="center-text">© Michael Dunsterville</p>
 
-  <div class="container">
-    <h2>Todays Jeopardy:</h2>
-    <h4>Category: <span id="todaysJeopardyCategory"></span></h4>
-    <h4>Worth: <span id="todaysJeopardyAmount"></span></h4>
-    <h4>Answer: <span id="todaysJeopardyAnswer"></span></h4>
-    <p class="reveal" id="revealJeopardy">Reveal Question</p>
-    <p class="answer" id="jeopardyQuestion"></p>
-  </div>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
