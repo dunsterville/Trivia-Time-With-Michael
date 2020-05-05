@@ -246,6 +246,7 @@ img.michael {
 }
 
 img.ding {
+  cursor: pointer;
   display: block;
   position: relative;
   width: 58px;
