@@ -40,7 +40,7 @@
     <img class="sprinkles" src="./images/Sprinkles.svg" alt="background">
     <div class="main display-flex">
       <div class="card">
-        <h2>Last Months Winners</h2>
+        <h2>Last<br>Month's<br>Winners</h2>
         <div class="display-flex">
           <img class="first" src="./images/1st.png" alt="1st">
           <h3>$11,200</h3>
@@ -58,19 +58,36 @@
       </div>
 
       <div class="card trivia">
-        <h2>Todays Trivia:</h2>
-        <h4 id="todaysTrivia"></h4>
-        <p class="reveal" id="revealTrivia">Reveal Answer</p>
-        <p class="answer" id="triviaAnswer"></p>
+        <div class="content">
+          <div class="front">
+            <h2>Today's<br>Trivia</h2>
+            <h4 id="todaysTrivia"></h4>
+            <p class="reveal" id="revealTrivia">Reveal Answer</p>
+            <p class="answer" id="triviaAnswer"></p>
+          </div>
+          <div class="back">
+            <h2>Answer</h2>
+            <p class="answer" id="triviaAnswer"></p>
+          </div>
+        </div>
       </div>
 
       <div class="card jeopardy">
-        <h2>Todays Jeopardy:</h2>
-        <h4>Category: <span id="todaysJeopardyCategory"></span></h4>
-        <h4>Worth: <span id="todaysJeopardyAmount"></span></h4>
-        <h4>Answer: <span id="todaysJeopardyAnswer"></span></h4>
-        <p class="reveal" id="revealJeopardy">Reveal Question</p>
-        <p class="answer" id="jeopardyQuestion"></p>
+        <div class="content">
+          <div class="front">
+            <h2>Today's<br>Jeopardy</h2>
+            <h4 class="yellow-text">Category: </h4>
+            <p id="todaysJeopardyCategory"></p>
+            <h4 class="yellow-text">Worth: </h4>
+            <p id="todaysJeopardyAmount"></p>
+            <h4 class="yellow-text">Answer: </h4>
+            <p id="todaysJeopardyAnswer"></p>
+            <p class="reveal" id="revealJeopardy">Reveal Question</p>
+          </div>
+          <div class="back">
+            <h2>Question</h2>
+            <p class="answer" id="jeopardyQuestion"></p>
+          </div>
       </div>
     </div>
     
@@ -131,11 +148,11 @@
       })
 
     document.getElementById('revealTrivia').addEventListener('click', () => {
-      document.getElementById('triviaAnswer').style.display = 'block'
+      document.querySelector('.trivia .content').className += ' revealed'
     })
 
     document.getElementById('revealJeopardy').addEventListener('click', () => {
-      document.getElementById('jeopardyQuestion').style.display = 'block'
+      document.querySelector('.jeopardy .content').className += ' revealed'
     })
 
   </script>
