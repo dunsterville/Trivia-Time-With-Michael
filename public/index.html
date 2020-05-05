@@ -67,8 +67,9 @@
             <p class="reveal" id="revealTrivia">Reveal Answer</p>
           </div>
           <div class="back">
-            <h2>Answer</h2>
-            <p class="answer" id="triviaAnswer"></p>
+            <h2 class="purple-text">Trivia<br>Answer</h2>
+            <p class="answer purple-text" id="triviaAnswer"></p>
+            <p class="hide" id="hideTrivia">Back to the Question</p>
           </div>
         </div>
       </div>
@@ -86,8 +87,9 @@
             <p class="reveal" id="revealJeopardy">Reveal Question</p>
           </div>
           <div class="back">
-            <h2>Question</h2>
-            <p class="answer" id="jeopardyQuestion"></p>
+            <h2 class="purple-text">Jeopardy<br>Question</h2>
+            <p class="answer purple-text" id="jeopardyQuestion"></p>
+            <p class="hide" id="hideJeopardy">Back to the Answer</p>
           </div>
       </div>
     </div>
@@ -154,6 +156,14 @@
 
     document.getElementById('revealJeopardy').addEventListener('click', () => {
       document.querySelector('.jeopardy .content').className += ' revealed'
+    })
+
+    document.getElementById('hideTrivia').addEventListener('click', () => {
+      document.querySelector('.trivia .content').className = 'content'
+    })
+
+    document.getElementById('hideJeopardy').addEventListener('click', () => {
+      document.querySelector('.jeopardy .content').className = 'content'
     })
 
   </script>

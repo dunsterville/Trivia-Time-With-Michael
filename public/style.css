@@ -62,10 +62,15 @@ p, a {
   margin: 2px 0;
   font-weight: 700;
   font-size: 14px;
+  line-height: 24px;
 }
 
 .yellow-text {
   color: #FBCA0C;
+}
+
+.purple-text {
+  color: #1A255E;
 }
 
 .center-text {
@@ -107,7 +112,7 @@ nav .container {
 }
 
 .container.container-logo {
-  top: -183px;
+  top: -248px;
 }
 
 .container.headline {
@@ -161,10 +166,13 @@ nav a, nav p {
 .card {
   position: absolute;
   width: 32%;
-  background-color: #1A255E;
   padding: 33px;
   height: 100%;
   box-sizing: border-box;
+}
+
+.card:nth-of-type(1) {
+  background-color: #1A255E;
 }
 
 .card .horizontal-line {
@@ -213,6 +221,10 @@ nav a, nav p {
   backface-visibility: hidden;
 }
 
+.front {
+  background-color: #1A255E;
+}
+
 .back {
   transform: rotateY( 180deg );
   background-color: #FBCA0C;
@@ -236,6 +248,26 @@ nav a, nav p {
 
 .reveal:hover {
   background-color: rgb(228, 184, 10);
+}
+
+.hide {
+  cursor: pointer;
+  width: 180px;
+  height: 40px;
+  color: #1A255E;
+  background-color: #78CFE2;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  margin-top: 20px;
+}
+
+.hide:hover {
+  background-color: rgb(111, 193, 211);
 }
 
 
