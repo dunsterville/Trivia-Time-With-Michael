@@ -106,11 +106,15 @@ nav .container {
   height: 100%;
 }
 
+.container.container-logo {
+  top: -183px;
+}
+
 .container.headline {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 183px;
+  margin-top: 183px;
 }
 
 .container.image-container {
