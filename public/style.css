@@ -5,6 +5,11 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+body {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
 /******************
 TEXT
 ******************/
@@ -112,20 +117,20 @@ nav .container {
 }
 
 .container.container-logo {
-  top: -248px;
+
 }
 
 .container.headline {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 183px;
+  top: 183px;
 }
 
 .container.image-container {
   height: 540px;
   margin-bottom: 54px;
-  margin-top: 70px;
+  top: 250px;
 }
 
 .main {
@@ -160,7 +165,6 @@ nav a, nav p {
 
 .logo {
   position: absolute;
-  margin-top: 33px;
 }
 
 .card {
@@ -322,12 +326,125 @@ img.sprinkles {
   bottom: -140px;
 }
 
+img.mobile-sprinkles {
+  display: none;
+}
+
 
 /******************
 MEDIA QUEIRES
 ******************/
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 1200px) {
+  .container {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+  .container {
+    width: 84%;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .container {
+    width: 94%;
+  }
+}
+
+@media only screen and (max-width: 878px) {
+  h1 {
+    text-align: center;
+    margin: 0.67em 0;
+  }
+
+  .container {
+    width: 310px;
+  }
+
+  .desktop-logo-container {
+    width: 120%;
+  }
+
+  .container.headline {
+    display: block;
+    top: 135px;
+  }
+
+  .container.image-container {
+    margin-top: 0;
+    top: 130px;
+  }
+
+  img.michael {
+    display: block;
+    margin: auto;
+  }
+
+  img.ding {
+    left: 270px;
+    top: -140px;
+  }
+
+  img.circle-dots {
+    top: 859px;
+  }
+
+  img.square-dots {
+    bottom: -66px;
+  }
+
+  img.sprinkles {
+    display: none;
+  }
+
+  img.mobile-sprinkles {
+    display: block;
+    position: absolute;
+  }
+
+  img.mobile-sprinkles:nth-of-type(1) {
+    left: 340px;
+    top: 160px;
+  }
+
+  img.mobile-sprinkles:nth-of-type(2) {
+    left: -130px;
+    top: 430px;
+  }
+
+  img.mobile-sprinkles:nth-of-type(3) {
+    left: -141px;
+    top: 1040px;
+  }
+
+  .main {
+    box-shadow: none;
+    background: none;
+  }
+
+  .card {
+    width: 100%;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.37);
+  }
+
+  .card:nth-of-type(1) {
+    height: 540px;
+  }
+
+  .card.trivia {
+    margin: 0;
+    top: 566px;
+    height: 420px;
+    left: 0;
+  }
+
+  .card.jeopardy {
+    top: 1012px;
+    height: 540px;
+  }
+
   nav {
     display: block;
   }
@@ -336,14 +453,33 @@ MEDIA QUEIRES
     display: none;
   }
 
+  .responsive .container {
+    display: block;
+  }
+
   nav .icon {
     float: right;
     display: block;
-    margin-top: 20px;
+    margin-top: 5px;
   }
 
   nav.responsive {
-    position: relative;
+    transition: height .5s ease-in-out;
+    background-image: url('./images/Shover_Benu.svg');
+    position: absolute;
+    z-index: 5;
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-color: transparent;
+    -webkit-transition: height .5s ease-in-out;
+    -moz-transition: height .5s ease-in-out;
+    -ms-transition: height .5s ease-in-out;
+    -o-transition: height .5s ease-in-out;
+}
+
+  nav.responsive + .desktop-logo-container {
+    display: none;
   }
 
   nav.responsive .icon {
@@ -353,11 +489,23 @@ MEDIA QUEIRES
     margin-top: 20px;
   }
 
-  nav.responsive a, nav.responsive a {
-    margin-top: 15px;
+  nav.responsive a {
+    transition: all .5s ease-in-out;
+    margin-top: 35px;
     float: none;
-    display: block;
+    display: inline-block;
     text-align: left;
+    color: #1C2760;
+    font-size: 36px;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+  }
+
+  .center-text {
+    position: relative;
+    top: 1000px;
   }
 }
 
