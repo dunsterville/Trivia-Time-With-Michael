@@ -116,10 +116,6 @@ nav .container {
   height: 100%;
 }
 
-.container.container-logo {
-
-}
-
 .container.headline {
   display: flex;
   justify-content: center;
@@ -222,6 +218,7 @@ nav a, nav p {
   position: absolute;
   height: 100%;
   width: 100%;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
