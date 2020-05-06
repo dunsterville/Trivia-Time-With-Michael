@@ -404,17 +404,17 @@ MEDIA QUEIRES
     position: absolute;
   }
 
-  img.mobile-sprinkles:nth-of-type(1) {
+  img.sprinkles1 {
     left: 340px;
     top: 160px;
   }
 
-  img.mobile-sprinkles:nth-of-type(2) {
+  img.sprinkles2 {
     left: -130px;
     top: 430px;
   }
 
-  img.mobile-sprinkles:nth-of-type(3) {
+  img.sprinkles3 {
     left: -141px;
     top: 1040px;
   }
