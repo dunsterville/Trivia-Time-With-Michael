@@ -280,6 +280,10 @@ nav a, nav p {
 IMAGES
 ******************/
 
+.hidden {
+  display: none;
+}
+
 img.michael {
   width: 118px;
   height: 118px;
