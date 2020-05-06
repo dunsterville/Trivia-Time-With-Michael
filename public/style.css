@@ -83,6 +83,12 @@ p, a {
   text-align: center;
 }
 
+.hamburger-text {
+  font-weight: 900;
+  font-size: 32px;
+}
+
+
 /******************
 CONTENT
 ******************/
@@ -331,6 +337,10 @@ img.mobile-sprinkles {
   display: none;
 }
 
+.hamburgerClose {
+  display: none;
+}
+
 
 /******************
 MEDIA QUEIRES
@@ -454,6 +464,11 @@ MEDIA QUEIRES
     display: none;
   }
 
+  .hamburgerClose {
+    top: 14px;
+    position: relative;
+  }
+
   .responsive .container {
     display: block;
   }
@@ -469,7 +484,7 @@ MEDIA QUEIRES
     background-image: url('./images/Shover_Benu.svg');
     position: absolute;
     z-index: 5;
-    background-size: auto;
+    background-size: contain;
     background-repeat: no-repeat;
     height: 100%;
     background-color: transparent;
@@ -477,6 +492,7 @@ MEDIA QUEIRES
     -moz-transition: height .5s ease-in-out;
     -ms-transition: height .5s ease-in-out;
     -o-transition: height .5s ease-in-out;
+    width: 105%;
 }
 
   nav.responsive + .desktop-logo-container {
