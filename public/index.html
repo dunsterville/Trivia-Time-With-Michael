@@ -7,7 +7,7 @@
   <meta property="og:description" content="It's Trivia Time With Michael!... Ding!" />
   <title>TTWM</title>
   <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./normalize.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./style.css">
@@ -122,13 +122,13 @@
         data.forEach(trivia => {
           if (moment().isAfter(today + triviaTime)) {
             if (moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(today, 'day') && !(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
-              document.getElementById('todaysTrivia').textContent = trivia.trivia
-              document.getElementById('triviaAnswer').textContent = trivia.answer
+              document.getElementById('todaysTrivia').innerHTML= trivia.trivia
+              document.getElementById('triviaAnswer').innerHTML = trivia.answer
             }
           } else {
             if (moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(yesterday, 'day') && !(moment(trivia.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
-              document.getElementById('todaysTrivia').textContent = trivia.trivia
-              document.getElementById('triviaAnswer').textContent = trivia.answer
+              document.getElementById('todaysTrivia').innerHTML = trivia.trivia
+              document.getElementById('triviaAnswer').innerHTML = trivia.answer
             }
           }
         });
@@ -140,17 +140,17 @@
         data.forEach(jeopardy => {
           if (moment().isAfter(today + triviaTime)) {
             if (moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(today, 'day') && !(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
-              document.getElementById('todaysJeopardyCategory').textContent = jeopardy.category
-              document.getElementById('todaysJeopardyAnswer').textContent = jeopardy.answer
-              document.getElementById('todaysJeopardyAmount').textContent = jeopardy.amount
-              document.getElementById('jeopardyQuestion').textContent = jeopardy.question
+              document.getElementById('todaysJeopardyCategory').innerHTML = jeopardy.category
+              document.getElementById('todaysJeopardyAnswer').innerHTML = jeopardy.answer
+              document.getElementById('todaysJeopardyAmount').innerHTML = jeopardy.amount
+              document.getElementById('jeopardyQuestion').innerHTML = jeopardy.question
             }
           } else {
             if (moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isSame(yesterday, 'day') && !(moment(jeopardy.date, 'YYYY-MM-DDTHH:mm:ss.SSS').isAfter(tomorrow))) {
-              document.getElementById('todaysJeopardyCategory').textContent = jeopardy.category
-              document.getElementById('todaysJeopardyAnswer').textContent = jeopardy.answer
-              document.getElementById('todaysJeopardyAmount').textContent = jeopardy.amount
-              document.getElementById('jeopardyQuestion').textContent = jeopardy.question
+              document.getElementById('todaysJeopardyCategory').innerHTML = jeopardy.category
+              document.getElementById('todaysJeopardyAnswer').innerHTML = jeopardy.answer
+              document.getElementById('todaysJeopardyAmount').innerHTML = jeopardy.amount
+              document.getElementById('jeopardyQuestion').innerHTML = jeopardy.question
             }
           }
         });
