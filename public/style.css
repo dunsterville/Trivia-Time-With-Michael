@@ -79,6 +79,7 @@ p, a {
 }
 
 .center-text {
+  padding-top: 260px;
   margin: auto;
   text-align: center;
 }
@@ -521,6 +522,7 @@ MEDIA QUEIRES
   }
 
   .center-text {
+    padding-top: 0;
     position: relative;
     top: 1000px;
   }
