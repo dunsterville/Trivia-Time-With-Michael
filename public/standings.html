@@ -3,35 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:image" content="http://triviatimewithmichael.com/images/og_image.png" />
+  <meta property="og:description" content="It's Trivia Time With Michael!... Ding!" />
   <title>TTWM</title>
   <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./normalize.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <nav id="nav">
-    <img src="./images/TTWMLogo.svg.svg" alt="logo">
-    <a href="./">Home</a>
-    <p>Standings</p>
-    <a href="./about">About</a>
-    <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
-      <i class="fa fa-bars"></i>
-    </a>
+    <img src="./images/Shover_Benu.svg" alt="hidden" class="hidden">
+    <div class="container">
+      <a href="./">Home</a>
+      <a href="./about">About</a>
+      <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
+        <span class="hamburger-text">🍔</span>
+        <img src="./images/x.svg" class="hamburgerClose" alt="close">
+      </a>
+    </div>
   </nav>
-  <h1>Standings</h1>
-  <div class="container">
-    <h2>Current</h2>
-    <div id="currentStandings">
-
-    </div>
-
-    <h2>All Time</h2>
-    <div id="allTimeStandings">
-
-    </div>
+  <img class="desktop-logo-container" src="./images/background.png">
+  <div class="container container-logo">
+    <a href="./">
+      <img class="logo" src="./images/TTWMLogo.svg" alt="logo">
+    </a>
   </div>
+
+  <div class="container headline">
+    <h1><span class="yellow-text">Current</span><br>Standings</h1>
+  </div>
+
+  <div class="image-container container">
+    <img class="circle-dots" src="./images/circledots.svg" alt="background">
+    <img class="square-dots" src="./images/squaredots.svg" alt="background">
+    <img class="sprinkles" src="./images/Sprinkles.svg" alt="background">
+    <img class="mobile-sprinkles sprinkles1" src="./images/mobile-sprinkles-1.svg" alt="background">
+    <img class="mobile-sprinkles sprinkles2" src="./images/mobile-sprinkles-2.svg" alt="background">
+    <img class="mobile-sprinkles sprinkles3" src="./images/mobile-sprinkles-3.svg" alt="background">
+    <div class="main display-flex">
+      <div class="card">
+        <h2>Last<br>Month's<br>Winners</h2>
+        <div class="display-flex">
+          <img class="first" src="./images/1st.png" alt="1st">
+          <h3>$19,300</h3>
+        </div>
+        <div class="horizontal-line"></div>
+        <div class="display-flex">
+          <img class="not-first" src="./images/2nd.png" alt="2nd">
+          <h3>$8,000</h3>
+        </div>
+        <div class="horizontal-line"></div>
+        <div class="display-flex">
+          <img class="not-first" src="./images/3rd.png" alt="3rd">
+          <h3>$5,000</h3>
+        </div>
+      </div>
+
+      <div class="card trivia">
+        <div class="content">
+          <div class="front">
+            <h2>This<br>Month's<br>Standings</h2>
+            <div id="currentStandings"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card jeopardy">
+        <div class="content">
+          <div class="front">
+            <h2>All Time<br>Standings</h2>
+            <div id="allTimeStandings"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <p class="center-text">© Michael Dunsterville</p>
+
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
