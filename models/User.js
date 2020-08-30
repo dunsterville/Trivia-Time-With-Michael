@@ -1,7 +1,9 @@
 module.exports = (model, Schema) => {
 
   const User = new Schema({
-    name: { type: String, required: true }
+    username: String,
+    avatar: String,
+    admin: {type: Boolean, default: false}
   }, 
   { 
     toJSON: { virtuals: true },
@@ -13,6 +15,8 @@ module.exports = (model, Schema) => {
     localField: '_id',
     foreignField: 'user'
   })
+
+  User.plugin(require('passport-local-mongoose'))
 
 
   return model('User', User)

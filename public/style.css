@@ -89,6 +89,10 @@ p, a {
   font-size: 32px;
 }
 
+.error-text {
+  color: red;
+}
+
 
 /******************
 CONTENT
@@ -278,6 +282,13 @@ nav a, nav p {
   background-color: rgb(111, 193, 211);
 }
 
+input {
+  display: block;
+}
+
+.has-error {
+  border: solid 1px red
+}
 
 
 /******************

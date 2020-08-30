@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:image" content="http://triviatimewithmichael.com/images/og_image.png" />
+  <meta property="og:description" content="It's Trivia Time With Michael!... Ding!" />
+  <title>TTWM</title>
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <nav id="nav">
+    <img src="./images/Shover_Benu.svg" alt="hidden" class="hidden">
+    <div class="container">
+      <a href="./standings">Standings</a>
+      <a href="./about">About</a>
+      <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
+        <span class="hamburger-text">🍔</span>
+        <img src="./images/x.svg" class="hamburgerClose" alt="close">
+      </a>
+    </div>
+  </nav>
+  <img class="desktop-logo-container" src="./images/background.png">
+  <div class="container container-logo">
+    <a href="./">
+      <img class="logo" src="./images/TTWMLogo.svg" alt="logo">
+    </a>
+  </div>
+
+  <div class="container headline">
+    <h1><span class="yellow-text">The</span><br>Game</h1>
+  </div>
+
+  <div class="image-container container">
+  <div class="container">
+    <h2>Welcome Admin: <span id="userUsername"></span></h2>
+    <div id="buzzedIn"></div>
+  </div>
+
+
+  <p class="center-text">© Michael Dunsterville</p>
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./app.js"></script>
+  <script>
+
+    let userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+
+    const socket = io()
+
+    socket.on('userBuzzedIn', (user) => {
+      document.getElementById('buzzedIn').textContent = `${user.user} Buzzed In`
+    })
+
+    const startGame = (user, admin) => {
+      document.getElementById('userUsername').textContent = user.username
+    }
+
+    if (!userInfo) {
+      window.location.pathname = '/login.html'
+    } else {
+      let token = userInfo.token
+      axios.post('/api/authorize', {username: userInfo.username}, {
+        headers: { 'Authorization': 'Bearer ' + token }
+      })
+        .then(({data}) => {
+          if (!data.admin) {
+            window.location.pathname = '/login.html'
+          } else {
+            startGame(userInfo)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          window.location.pathname = '/login.html'
+        })
+    }
+    
+
+  </script>
+</body>
+</html>

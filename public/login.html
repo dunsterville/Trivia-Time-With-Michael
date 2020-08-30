@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:image" content="http://triviatimewithmichael.com/images/og_image.png" />
+  <meta property="og:description" content="It's Trivia Time With Michael!... Ding!" />
+  <title>TTWM</title>
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <nav id="nav">
+    <img src="./images/Shover_Benu.svg" alt="hidden" class="hidden">
+    <div class="container">
+      <a href="./standings">Standings</a>
+      <a href="./about">About</a>
+      <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
+        <span class="hamburger-text">🍔</span>
+        <img src="./images/x.svg" class="hamburgerClose" alt="close">
+      </a>
+    </div>
+  </nav>
+  <img class="desktop-logo-container" src="./images/background.png">
+  <div class="container container-logo">
+    <a href="./">
+      <img class="logo" src="./images/TTWMLogo.svg" alt="logo">
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="main display-flex">
+      <form action="" id="login">
+        <input type="text" name="loginUsername" id="loginUsername" placeholder="Username">
+        <input type="password" name="loginPassword" id="loginPassword" placeholder="Password">
+        <button type="submit">Login</button>
+      </form>
+
+      <form action="" id="register">
+        <input type="text" name="registerUsername" id="registerUsername" placeholder="Username">
+        <input type="text" name="avatar" id="avatar" placeholder="Link To Avatar">
+        <input type="password" name="registerPassword" id="registerPassword" placeholder="Password">
+        <button type="submit">Register</button>
+      </form>
+      <p id="errorText" class="error-text"></p>
+    </div>
+  </div>
+
+
+  <p class="center-text">© Michael Dunsterville</p>
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script src="./app.js"></script>
+  <script>
+
+    const errorText = document.getElementById('errorText')
+
+    // Login
+    document.getElementById('login').addEventListener('submit', e => {
+      e.preventDefault()
+
+      let username = document.getElementById('loginUsername')
+      let password = document.getElementById('loginPassword')
+
+      username.classList = ''
+      password.classList = ''
+      errorText.textContent = ''
+
+      if(username.value && password.value) {
+        axios.post('/api/login', {username: username.value, password: password.value})
+          .then(({data}) => {
+            if(!data) {
+              errorText.textContent = 'Invald Username or Password'
+            } else {
+              sessionStorage.setItem('userInfo', JSON.stringify(data))
+              window.location.pathname = '/game.html'
+            }
+          })
+          .catch(err => console.error(err))
+      } else if (username.value) {
+        password.classList = 'has-error'
+      } else if (password.value) {
+        username.classList = 'has-error'
+      } else {
+        password.classList = 'has-error'
+        username.classList = 'has-error'
+      }
+    })
+
+    // Register
+    document.getElementById('register').addEventListener('submit', e => {
+      e.preventDefault()
+
+      let username = document.getElementById('registerUsername')
+      let password = document.getElementById('registerPassword')
+      let avatar = document.getElementById('avatar').value ? document.getElementById('registerAvatar').value : '/default-avatar.png'
+
+      username.classList = ''
+      password.classList = ''
+      errorText.textContent = ''
+
+      let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
+
+      let error = false
+
+      if (username.value && password.value) {
+        if (username.value.length < 4) {
+          username.classList = 'has-error'
+          errorText.textContent = 'Username must be at least 4 characters '
+          error = true
+        }
+
+        if (password.value.length < 8) {
+          password.classList = 'has-error'
+          errorText.textContent += 'Password must be at least 8 characters'
+          error = true
+        } else if (!passwordRegex.test(password.value)) {
+          password.classList = 'has-error'
+          errorText.textContent += 'Password must contain an Uppercase, Lowercase, Special, and Numerical Character'
+          error = true
+        }
+  
+        if (!error) {
+          axios.post('/api/username', {username: username.value})
+            .then(({data}) => {
+              axios.post('/api/register', {username: username.value, avatar: avatar, password: password.value})
+                .then(({data}) => {
+                  sessionStorage.setItem('userInfo', JSON.stringify(data))
+                  window.location.pathname = '/game.html'
+                })
+                .catch(err => console.error(err))
+            })
+            .catch(err => {
+              console.error('err')
+              if (err.response.status === 409) {
+                errorText.textContent = 'Username is already in use'
+              } 
+            })
+        }
+
+      } else if (username.value) {
+        password.classList = 'has-error'
+      } else if (password.value) {
+        username.classList = 'has-error'
+      } else {
+        password.classList = 'has-error'
+        username.classList = 'has-error'
+      }
+    })
+
+  </script>
+</body>
+</html>
