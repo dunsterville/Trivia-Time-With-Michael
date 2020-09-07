@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
 })
 
 
-app.use(express.static(join(__dirname, 'public'), {extensions: ['html'], dotfiles: 'allow' }))
+app.use(express.static(join(__dirname, 'client', 'build'), {extensions: ['html'], dotfiles: 'allow' }))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
@@ -42,6 +42,16 @@ passport.use(new JWTStrategy({jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerT
   .catch(e => cb(e))))
 
 
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(join(__dirname, 'client/build')))
+  // Handle React routing, return all requests to React app
+  app.get('*', (request, response) => {
+    response.sendFile(join(__dirname, 'client/build', 'index.html'))
+  })
+}
+  
+
 require('./routes')(app)
 
 require('mongoose').connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost:27017/trivia_time_with_michael', {
@@ -50,5 +60,5 @@ require('mongoose').connect(process.env.NODE_ENV === 'production' ? process.env.
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-  .then(() => http.listen(process.env.PORT || 3000))
+  .then(() => http.listen(process.env.PORT || 3001))
   .catch(e => console.log(e))
