@@ -1,13 +1,448 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+html, body {
+  background-color: #1C2760;
+  font-family: work sans;
+  color: white;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  overflow-x: hidden;
+  overflow-y: visible;
 }
+
+/******************
+TEXT
+******************/
+
+h1 {
+  font-weight: 900;
+  font-size: 36px;
+  text-align: left;
+  margin: 0 33px;
+  text-transform: uppercase;
+}
+
+h2 { 
+  font-weight: 900;
+  font-size: 36px;
+  color: #78CFE2;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 900;
+  font-size: 18px;
+  color: #78CFE2;
+}
+
+h4 {
+  margin: 22px 0 0;
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+h5 {
+  font-weight: 300;
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+h6 {
+  font-weight: 300;
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+a {
+  color: #e7e7e7;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+p, a {
+  margin: 2px 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.yellow-text {
+  color: #FBCA0C;
+}
+
+.purple-text {
+  color: #1A255E;
+}
+
+.center-text {
+  padding-top: 260px;
+  margin: auto;
+  text-align: center;
+}
+
+.hamburger-text {
+  font-weight: 900;
+  font-size: 32px;
+}
+
+.error-text {
+  color: red;
+}
+
+
+/******************
+CONTENT
+******************/
+
+.container {
+  position: relative;
+  width: 66%;
+  margin: auto;
+  z-index: 2;
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+}
+
+.container.headline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 183px;
+}
+
+.container.image-container {
+  height: 540px;
+  margin-bottom: 54px;
+  top: 250px;
+}
+
+.main {
+  background: linear-gradient(rgba( 0,0,0,0.1), rgba(0, 0, 0, 0.37), rgba( 0,0,0,0.2));
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.37);
+  align-items: stretch;
+  height: 100%;
+  position: relative;
+  z-index: 4;
+  margin-bottom: 40px;
+}
+
+.desktop-logo-container {
+  width: 60%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.logo {
+  position: absolute;
+}
+
+.card {
+  position: absolute;
+  width: 32%;
+  padding: 33px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.card:nth-of-type(1) {
+  background-color: #1A255E;
+}
+
+.card .horizontal-line {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255,255,255,0.1);
+  border: 0;
+  margin: 15px 0;
+}
+
+.card.trivia {
+  margin: 0 2%;
+  left: 32%;
+}
+
+.card.jeopardy {
+  right: 0;
+}
+
+.content {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.revealed.content {
+  transform: rotateY( 180deg ) ;
+  transition: transform 0.5s;
+}
+
+.front,
+.back {
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  padding: 33px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.front {
+  background-color: #1A255E;
+}
+
+.back {
+  transform: rotateY( 180deg );
+  background-color: #FBCA0C;
+}
+
+.reveal {
+  cursor: pointer;
+  width: 180px;
+  height: 40px;
+  color: #1A255E;
+  background-color: #FBCA0C;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  margin-top: 20px;
+}
+
+.reveal:hover {
+  background-color: rgb(228, 184, 10);
+}
+
+.hide {
+  cursor: pointer;
+  width: 180px;
+  height: 40px;
+  color: #1A255E;
+  background-color: #78CFE2;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  margin-top: 20px;
+}
+
+.hide:hover {
+  background-color: rgb(111, 193, 211);
+}
+
+input {
+  display: block;
+}
+
+.has-error {
+  border: solid 1px red
+}
+
+
+/******************
+IMAGES
+******************/
+
+.hidden {
+  display: none;
+}
+
+img.michael {
+  width: 118px;
+  height: 118px;
+}
+
+img.ding {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  width: 58px;
+  height: 40px;
+  left: -30px;
+  top: -30px;
+}
+
+img.first {
+  width: 123px;
+  margin-top: -18px;
+  margin-right: 18px;
+}
+
+img.not-first {
+  width: 117px;
+  margin-right: 18px;
+}
+
+img.circle-dots, img.square-dots, img.sprinkles {
+  position: absolute;
+  z-index: 1;
+}
+
+img.circle-dots {
+  right: -91px;
+  top: -71px;
+}
+
+img.square-dots {
+  left: -39px;
+  bottom: -28px;
+}
+
+img.sprinkles {
+  right: -260px;
+  bottom: -140px;
+}
+
+img.mobile-sprinkles {
+  display: none;
+}
+
+.hamburgerClose {
+  display: none;
+}
+
+
+/******************
+MEDIA QUEIRES
+******************/
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+  .container {
+    width: 84%;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .container {
+    width: 94%;
+  }
+}
+
+@media only screen and (max-width: 878px) {
+  h1 {
+    text-align: center;
+    margin: 0.67em 0;
+  }
+
+  .container {
+    width: 310px;
+  }
+
+  .desktop-logo-container {
+    width: 120%;
+  }
+
+  .container.headline {
+    display: block;
+    top: 135px;
+  }
+
+  .container.image-container {
+    margin-top: 0;
+    top: 130px;
+  }
+
+  img.michael {
+    display: block;
+    margin: auto;
+  }
+
+  img.ding {
+    left: 270px;
+    top: -140px;
+  }
+
+  img.circle-dots {
+    top: 859px;
+  }
+
+  img.square-dots {
+    bottom: -66px;
+  }
+
+  img.sprinkles {
+    display: none;
+  }
+
+  img.mobile-sprinkles {
+    display: block;
+    position: absolute;
+  }
+
+  img.sprinkles1 {
+    left: 340px;
+    top: 160px;
+  }
+
+  img.sprinkles2 {
+    left: -130px;
+    top: 430px;
+  }
+
+  img.sprinkles3 {
+    left: -141px;
+    top: 1040px;
+  }
+
+  .main {
+    box-shadow: none;
+    background: none;
+  }
+
+  .card {
+    width: 100%;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.37);
+  }
+
+  .card:nth-of-type(1) {
+    height: 540px;
+  }
+
+  .card.trivia {
+    margin: 0;
+    top: 566px;
+    height: 420px;
+    left: 0;
+  }
+
+  .card.jeopardy {
+    top: 1012px;
+    height: 540px;
+  }
+
+  .center-text {
+    padding-top: 0;
+    position: relative;
+    top: 1000px;
+  }
+}
+

@@ -3,7 +3,12 @@ import axios from 'axios'
 const TTWMApi = {
   // Page Routes
 
-  // Element Routes
+  // Score Routes
+  getAllScores: () => axios.get('/api/score'),
+  postScore: (score) => axios.post('/api/score', score),
+  // Unsure if put & delete routes are necessary
+  updateScore: (id, score) => axios.put(`/api/score/${id}`, score),
+  deleteScore: (id) => axios.delete(`/api/score/${id}`),
   
   // User Routes
   registerUser: (user) => axios.post('/api/register', user),
