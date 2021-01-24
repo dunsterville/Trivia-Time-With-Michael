@@ -3,7 +3,7 @@ import { createContext } from 'react'
 const UserContext = createContext({
   username: '',
   password: '',
-  signature: '',
+  sigCanvas: '',
   token: '',
   handleOnSubmit: () => { }
 })

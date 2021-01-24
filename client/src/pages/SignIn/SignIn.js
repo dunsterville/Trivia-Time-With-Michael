@@ -9,15 +9,20 @@ const { loginUser, authorize } = TTWMApi
 const SignIn = _ => {
 
   const [ userState, userSetState ] = useState({
-    username: '',
+    email: '',
     password: '',
     token: '',
+    loginError: false,
   })
 
-  userState.handleOnSubmit = e => {
+  userState.handleInputChange = e => {
+    userSetState({...userState, [e.target.name]: e.target.value})
+  }
+
+  userState.handleFormSubmit = e => {
     e.preventDefault()
 
-    loginUser({username: userState.username, password: userState.password})
+    loginUser({email: userState.email, password: userState.password})
       .then(({data}) => {
         if (!data) {
           userSetState({...userState, loginError: true})
@@ -38,7 +43,7 @@ const SignIn = _ => {
       authorize(userState.token)
         .then(res => {
           console.log(res)
-          window.location.href = '/game'
+          window.location.href = '/explore'
         })
         .catch(err => {
           console.error(err)

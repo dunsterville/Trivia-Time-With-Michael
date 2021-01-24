@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import SignUpForm from '../../components/SignUpForm'
 import UserContext from '../../utils/Usercontext'
 import TTWMApi from '../../utils/TTWMApi'
@@ -12,10 +12,12 @@ const SignUp = _ => {
     email: '',
     password: '',
     formValid: true,
+    sigCanvas: useRef(null),
     token: '',
     errors: {
       username: 'Username is required',
       email: 'Email is required',
+      sigCanvas: 'Signature is required',
       password: 'Password is required'
     }
   })
@@ -23,22 +25,18 @@ const SignUp = _ => {
   userState.handleInputChange = e => {
     const { name, value } = e.target
     let errors = userState.errors
-    const validEmailRegex = 
-    RegExp(/^[^@\s]+@[^@\s.]+\.[^@.\s]+$/i)
+    const validEmailRegex = RegExp(/^[^@\s]+@[^@\s.]+\.[^@.\s]+$/i)
 
     // Validation Switch
     switch (name) {
       case 'username': 
-        errors.username = 
-          value.length < 5 ? 'Username must be at least 5 characters' : ''
+        errors.username = value.length < 5 ? 'Username must be at least 5 characters' : ''
         break
       case 'email': 
-        errors.email = 
-          validEmailRegex.test(value) ? '' : 'Please use a valid email'
+        errors.email = validEmailRegex.test(value) ? '' : 'Please use a valid email'
         break
       case 'password': 
-        errors.password = 
-          value.length < 8 ? 'Password must be at least 8 characters' : ''
+        errors.password = value.length < 8 ? 'Password must be at least 8 characters' : ''
         break
       default:
         break
@@ -47,13 +45,20 @@ const SignUp = _ => {
     userSetState({...userState, errors, [e.target.name]: e.target.value})
   }
 
+  userState.handleClearCanvas = e => {
+    //e.preventDefault()
+    console.log(e)
+    userState.sigCanvas.current.clear()
+  }
+
   userState.handleFormSubmit = e => {
     e.preventDefault()
     
     // Check if there's errors
     let valid = true
-    Object.values(userState.errors).forEach( val => val.length > 0 && (valid = false)
-    )
+    userState.errors.sigCanvas = userState.sigCanvas.current.isEmpty() ? 'Please enter a signature' : ''
+    Object.values(userState.errors).forEach( val => val.length > 0 && (valid = false))
+
     // If no errors continue
     if (valid) {
       let errors = userState.errors

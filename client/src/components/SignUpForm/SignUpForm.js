@@ -1,38 +1,55 @@
-import React, { useContext, useState }  from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useContext } from 'react'
+import './SignUpForm.css'
 import SignatureCanvas from 'react-signature-canvas'
 import UserContext from '../../utils/Usercontext'
 
 const SignUpForm = _ => {
-  const { register, handleSubmit, errors } = useForm()
 
+  const { email, sigCanvas, password, errors, formValid, handleInputChange, handleFormSubmit, handleClearCanvas } = useContext(UserContext)
 
-  const [ userState, userSetState ] = useState({
-    trimmedDataURL: null
-  })
+  const errorStyle = {
+    border: 'solid 2px #FF647C'
+  }
   
+  const errorLabel = {
+    display: 'block',
+    color: '#FF647C',
+    fontSize: '12px'
+  }
 
-  //const { username,  password, handleOnSubmit } = useContext(UserContext)
-  const onSubmit = data => console.log(data, userState.sigCanvas.getTrimmedCanvas().toDataURL('image/svg+xml'))
+  //const onSubmit = data => console.log(data, userState.sigCanvas.getTrimmedCanvas().toDataURL('image/svg+xml'))
 
   return (
     <div>
-      {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-      <form onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
-        <input name="username" ref={register({ required: true, minLength: 4 })} />
-        {errors.username && TypeError==="required" && <span>This field is required</span>}
-        {errors.username && TypeError==="minLength" && <span>Username must be at least 4 characters</span>}
-        
-        <SignatureCanvas canvasProps={{width: 500, height: 200, className: 'sigCanvas'}} ref={(ref) => { userState.sigCanvas = ref }} />
+      <form onSubmit={handleFormSubmit}>
+        <div className="formHeader">
+          <h2>Sign Up</h2>
+          <p>Please enter your information below</p>
+        </div>
 
-        {/* include validation with required or other standard HTML validation rules */}
-        <input name="password" ref={register({ required: true , minLength: 8})} />
-        {/* errors will return when field validation fails  */}
-        {errors.password && TypeError==="required" && <span>This field is required</span>}
-        {errors.password && TypeError==="minLength" && <span>Password must be at least 8 characters</span>}
-        
-        <input type="submit" />
+          <label>Email</label>
+          <input style={(!formValid && errors.email) ? errorStyle : {border: '0'}} type="email" name="email" value={email} onChange={handleInputChange} placeholder="ex. johndoe@gmail.com" />
+          <p style={(!formValid && errors.email) ? errorLabel : {display: 'none'}}>{errors.email}</p>
+
+          <label>Signature (this is Jeopardy you know)</label>
+          <div className="sigCanvas-container" style={(!formValid && errors.sigCanvas) ? errorStyle : {border: '0'}}>
+            <SignatureCanvas  canvasProps={{width: 'auto', height: 'auto', className: 'sigCanvas'}} ref={sigCanvas} />
+          </div>
+          <p style={(!formValid && errors.sigCanvas) ? errorLabel : {display: 'none'}}>{errors.sigCanvas}</p>
+          <button type="button" className="clearCanvas" onClick={handleClearCanvas}>Clear Signature</button>
+
+          <label>Password</label>
+          <input style={(!formValid && errors.password) ? errorStyle : {border: '0'}} type="password" name="password" value={password} onChange={handleInputChange} placeholder="ex. password123" />
+          <p style={(!formValid && errors.password) ? errorLabel : {display: 'none'}}>{errors.password}</p>
+
+        <button type="submit" onClick={handleFormSubmit}>Create Account</button>
+        <br />
+        <br />
+        <div className="text-center colorSet">
+          <p>Already Have an Account?</p>
+          <a className="bottomLink" href="/signin">Sign In</a>
+          <a href="/">Home</a>
+        </div>
       </form>
     </div>
   )

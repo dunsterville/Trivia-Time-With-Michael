@@ -11,9 +11,9 @@ const NavBar = _ => {
       <a href="./">Home</a>
       <a href="./standings">Standings</a>
       <p>About</p>
-      <a href="javascript:void(0);" class="icon" id="hamburgerMenu">
+      <button class="icon" id="hamburgerMenu">
         <i class="fa fa-bars"></i>
-      </a>
+      </button>
     </nav>
   )
 }

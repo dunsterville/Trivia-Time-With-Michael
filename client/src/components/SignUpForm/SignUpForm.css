@@ -1,0 +1,63 @@
+label {
+  display: block;
+  margin: 16px 0 2px;
+}
+
+input {
+  width: 300px;
+  height: 40px;
+  border: 0;
+  box-sizing: border-box;
+}
+
+button {
+  border: 0mm;
+  width: 300px;
+  height: 40px;
+  color: #1A255E;
+  background-color: #FBCA0C;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+button.clearCanvas {
+  border: 0;
+  color: #f1f1f1;
+  background-color: transparent;
+  width: auto;
+  text-align: left;
+  height: auto;
+  margin-top: 0;
+  font-size: 14px;
+  outline: 0;
+}
+
+.bottomLink{
+  margin-right: 10px;
+}
+
+.sigCanvas-container {
+  width: 300px;
+  height: 150px;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+canvas {
+  display: block;
+  margin: 0;
+  background-color: white;
+  border: solid 0px transparent;
+}
+
