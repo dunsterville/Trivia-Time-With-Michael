@@ -16,7 +16,7 @@ module.exports = (model, Schema) => {
     foreignField: 'user'
   })
 
-  User.plugin(require('passport-local-mongoose'))
+  User.plugin(require('passport-local-mongoose'), {usernameField: 'email'})
 
 
   return model('User', User)

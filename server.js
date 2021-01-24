@@ -33,7 +33,7 @@ const { User } = require('./models')
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.use(new Strategy(User.authenticate()))
+passport.use(User.createStrategy())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 

@@ -68,7 +68,7 @@ const SignUp = _ => {
           errors.email = ''
           userSetState({...userState, errors, formValid: true})
           // If username isn't taken create user
-          registerUser({email: userState.email, avatar: userState.sigCanvas.current.toDataURL('image/svg+xml'), password: userState.password})
+          registerUser({email: userState.email, avatar: userState.sigCanvas.current.toDataURL('image/png'), password: userState.password})
             .then(({data}) => {
               console.log('Register user response')
               userSetState({...userState, token: data.token})
