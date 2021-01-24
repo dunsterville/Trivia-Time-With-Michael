@@ -67,10 +67,8 @@ module.exports = app => {
 
   // Check if user is authorized
   app.post('/api/authorize', passport.authenticate('jwt'), (req,res) => {
-    console.log(req.body.email)
     User.findOne({email: req.body.email})
       .then((err, user) => {
-        console.log(err, user)
         if (err)  {
           if (err.email) {
             res.json({ admin: err.admin})

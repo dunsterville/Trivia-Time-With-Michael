@@ -16,10 +16,10 @@ const { authorize } = TTWMApi
 const App = () => {
 
   //console.log(authorize(JSON.parse(sessionStorage.getItem('userInfo')).token))
-  const isAuthenticated = sessionStorage.getItem('userInfo') ? authorize(JSON.parse(sessionStorage.getItem('userInfo')).token) : false
+  const isAuthenticated = sessionStorage.getItem('userInfo') ? authorize(JSON.parse(sessionStorage.getItem('userInfo')).token, JSON.parse(sessionStorage.getItem('userInfo')).email) : false
   const isAdmin = () => {
     if (sessionStorage.getItem('userInfo')) {
-     authorize(JSON.parse(sessionStorage.getItem('userInfo')).token)
+     authorize(JSON.parse(sessionStorage.getItem('userInfo')).token, JSON.parse(sessionStorage.getItem('userInfo')).email)
       .then(({data}) => {
         if (!data.admin) {
           return false
