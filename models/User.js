@@ -1,7 +1,7 @@
 module.exports = (model, Schema) => {
 
   const User = new Schema({
-    username: String,
+    email: String,
     avatar: String,
     admin: {type: Boolean, default: false}
   }, 

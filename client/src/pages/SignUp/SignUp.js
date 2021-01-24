@@ -3,19 +3,17 @@ import SignUpForm from '../../components/SignUpForm'
 import UserContext from '../../utils/Usercontext'
 import TTWMApi from '../../utils/TTWMApi'
 
-const { registerUser, usernameAvailable, authorize } = TTWMApi
+const { registerUser, emailAvailable, authorize } = TTWMApi
 
 const SignUp = _ => {
 
   const [ userState, userSetState ] = useState({
-    username: '',
     email: '',
     password: '',
     formValid: true,
     sigCanvas: useRef(null),
     token: '',
     errors: {
-      username: 'Username is required',
       email: 'Email is required',
       sigCanvas: 'Signature is required',
       password: 'Password is required'
@@ -29,9 +27,6 @@ const SignUp = _ => {
 
     // Validation Switch
     switch (name) {
-      case 'username': 
-        errors.username = value.length < 5 ? 'Username must be at least 5 characters' : ''
-        break
       case 'email': 
         errors.email = validEmailRegex.test(value) ? '' : 'Please use a valid email'
         break
@@ -53,25 +48,29 @@ const SignUp = _ => {
 
   userState.handleFormSubmit = e => {
     e.preventDefault()
-    
+    console.log('Form Submit')
     // Check if there's errors
     let valid = true
     userState.errors.sigCanvas = userState.sigCanvas.current.isEmpty() ? 'Please enter a signature' : ''
     Object.values(userState.errors).forEach( val => val.length > 0 && (valid = false))
 
+    console.log(valid)
     // If no errors continue
     if (valid) {
+      console.log('Valid')
       let errors = userState.errors
 
-      // Check if username is available
-      usernameAvailable({username: userState.username})
+      // Check if email is available
+      emailAvailable({email: userState.email})
         .then(({data}) => {
-          // Clear username errors
-          errors.username = ''
+          console.log('Check email response')
+          // Clear Email errors
+          errors.email = ''
           userSetState({...userState, errors, formValid: true})
           // If username isn't taken create user
-          registerUser({username: userState.username, email: userState.email, password: userState.password})
+          registerUser({email: userState.email, avatar: userState.sigCanvas.current.toDataURL('image/svg+xml'), password: userState.password})
             .then(({data}) => {
+              console.log('Register user response')
               userSetState({...userState, token: data.token})
               // Set User info in session storage
               sessionStorage.setItem('userInfo', JSON.stringify(data))
@@ -80,8 +79,9 @@ const SignUp = _ => {
           }
         )
         .catch(err => {
+          console.log('Error: ' + err.response)
           if (err.response.status === 409) {
-            errors.username = 'Username is already in use'
+            errors.email = 'Email is already in use'
             userSetState({...userState, errors, formValid: false})
           }
       })    
@@ -96,7 +96,7 @@ const SignUp = _ => {
       authorize(userState.token)
         .then(res => {
           console.log(res)
-          window.location.href = '/explore'
+          window.location.href = '/game'
         })
         .catch(err => {
           console.error(err)
