@@ -38,12 +38,23 @@ const SignIn = _ => {
   }
 
   useEffect(() => {
+    console.log('PLEASE FREAKING LOG SOMETHING')
     // Check if user is Authorized if token exists
     if (userState.token !== '') {
-      authorize(userState.token)
+      console.log('test')
+      authorize(userState.token, JSON.parse(sessionStorage.getItem('userInfo')).email)
         .then(res => {
           console.log(res)
-          window.location.href = '/explore'
+          window.location.href = '/game'
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    } else if (sessionStorage.getItem('userInfo') ) {
+      authorize(JSON.parse(sessionStorage.getItem('userInfo')).token, JSON.parse(sessionStorage.getItem('userInfo')).email)
+        .then(res => {
+          console.log(res)
+          window.location.href = '/game'
         })
         .catch(err => {
           console.error(err)

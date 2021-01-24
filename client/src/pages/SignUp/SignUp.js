@@ -93,7 +93,7 @@ const SignUp = _ => {
   useEffect(() => {
     // Check if user is Authorized if token exists
     if (userState.token !== '') {
-      authorize(userState.token)
+      authorize(userState.token, JSON.parse(sessionStorage.getItem('userInfo')).email)
         .then(res => {
           console.log(res)
           window.location.href = '/game'
