@@ -18,8 +18,8 @@ const HomePage = () => {
   //   audio.play()
   // }
 
-  const [play, { stop, isPlaying}] = useSound(jingle, {
-    volume: 0.8,
+  const [play, { isPlaying }] = useSound(jingle, {
+    volume: 0.5,
   });
 
   const handlePlayJingle = () => {

@@ -3,10 +3,6 @@ import React, { useEffect, useState } from 'react'
 // import UserContext from '../../utils/Usercontext'
 import io from 'socket.io-client'
 import NavBar from '../../components/NavBar'
-// Api
-import TTWMApi from '../../utils/TTWMApi'
-
-const { authorizeAdmin } = TTWMApi
 
 const socket = io.connect('http://localhost:3001')
 
