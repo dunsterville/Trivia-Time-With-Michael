@@ -88,6 +88,7 @@ nav a, nav p {
     text-align: left;
     color: #1C2760;
     font-size: 36px;
+    width: 200px;
     -webkit-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
     -ms-transition: all .5s ease-in-out;
