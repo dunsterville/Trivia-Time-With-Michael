@@ -8,7 +8,8 @@ html, body {
 body, #root {
   height: 812px;
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 /******************
