@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import GameScreen from '../../components/GameScreen'
-import UserContext from '../../utils/Usercontext'
+// import GameScreen from '../../components/GameScreen'
+// import UserContext from '../../utils/Usercontext'
 import io from 'socket.io-client'
+import NavBar from '../../components/NavBar'
 // Api
 import TTWMApi from '../../utils/TTWMApi'
 
@@ -84,11 +85,14 @@ const Game = _ => {
 
 
   return (
-    <div className="container">
-      <h2>Welcome: <span>{JSON.parse(sessionStorage.getItem('userInfo')) ? JSON.parse(sessionStorage.getItem('userInfo')).email : 'test'}</span></h2>
-      <button type="button" disabled={gameState.buzzInDisabled} onClick={gameState.handleBuzzIn}>Buzz In</button>
-      <div id="buzzedIn">{chat.renderChat()}</div>
-    </div>
+    <>
+      <NavBar />
+      <div className="container headline">
+        <h2>Welcome: <span>{JSON.parse(sessionStorage.getItem('userInfo')) ? JSON.parse(sessionStorage.getItem('userInfo')).email : 'test'}</span></h2>
+        <button className="button-yellow" type="button" disabled={gameState.buzzInDisabled} onClick={gameState.handleBuzzIn}>Buzz In</button>
+        <div id="buzzedIn">{chat.renderChat()}</div>
+      </div>
+    </>
   )
 }
 

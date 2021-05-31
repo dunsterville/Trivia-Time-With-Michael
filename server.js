@@ -11,10 +11,11 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 
-app.enable('trust proxy')
-app.use((req, res, next) => {
-    req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
-})
+// Uncomment on Production
+// app.enable('trust proxy')
+// app.use((req, res, next) => {
+//     req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
+// })
 
 app.use(express.static(join(__dirname, 'client', 'build'), {extensions: ['html'], dotfiles: 'allow' }))
 app.use(express.urlencoded({ extended: true }))

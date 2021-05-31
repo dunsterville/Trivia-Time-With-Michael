@@ -20,7 +20,7 @@ const SignUpForm = _ => {
   //const onSubmit = data => console.log(data, userState.sigCanvas.getTrimmedCanvas().toDataURL('image/svg+xml'))
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleFormSubmit}>
         <div className="formHeader">
           <h2>Sign Up</h2>

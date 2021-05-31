@@ -37,7 +37,7 @@ nav a, nav p {
   }
 
   .hamburgerClose {
-    top: 14px;
+    top: -16px;
     position: relative;
   }
 
@@ -49,6 +49,8 @@ nav a, nav p {
     float: right;
     display: block;
     margin-top: 5px;
+    background: transparent;
+    border: 0;
   }
 
   nav.responsive {
@@ -90,5 +92,11 @@ nav a, nav p {
     -moz-transition: all .5s ease-in-out;
     -ms-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
+  }
+
+  @media only screen and (max-width: 878px) {
+    nav.responsive a {
+      display: block;
+    }
   }
 }

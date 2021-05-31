@@ -1,3 +1,8 @@
+.form-container {
+  width: 300px;
+  margin: auto;
+}
+
 label {
   display: block;
   margin: 16px 0 2px;
@@ -10,7 +15,7 @@ input {
   box-sizing: border-box;
 }
 
-button {
+.form-container button {
   border: 0mm;
   width: 300px;
   height: 40px;
@@ -27,8 +32,10 @@ button {
   cursor: pointer;
 }
 
-.bottomLink{
-  margin-right: 10px;
+.form-container button:hover {
+  background-color: rgb(228, 184, 10);
 }
 
-
+.bottomLink {
+  margin-right: 10px;
+}

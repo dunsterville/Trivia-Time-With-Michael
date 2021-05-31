@@ -5,9 +5,10 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  overflow-x: hidden;
-  overflow-y: visible;
+body, #root {
+  height: 812px;
+  width: 100%;
+  overflow: hidden;
 }
 
 /******************
@@ -118,7 +119,7 @@ CONTENT
 }
 
 .container.image-container {
-  height: 540px;
+  height: 260px;
   margin-bottom: 54px;
   top: 250px;
 }
@@ -213,7 +214,7 @@ CONTENT
   background-color: #FBCA0C;
 }
 
-.reveal {
+.reveal, .button-yellow {
   cursor: pointer;
   width: 180px;
   height: 40px;
@@ -227,10 +228,20 @@ CONTENT
   text-align: center;
   line-height: 40px;
   margin-top: 20px;
+  border: 0;
 }
 
-.reveal:hover {
+.reveal:hover, .button-yellow {
   background-color: rgb(228, 184, 10);
+}
+
+.button-yellow {
+  width: 244px;
+  display: block;
+}
+
+.button-yellow:disabled {
+  background-color: #d1b649;
 }
 
 .hide {
@@ -424,7 +435,7 @@ MEDIA QUEIRES
   }
 
   .card:nth-of-type(1) {
-    height: 540px;
+    height: 260px;
   }
 
   .card.trivia {

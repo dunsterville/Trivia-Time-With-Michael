@@ -19,7 +19,7 @@ const SignInForm = _ => {
   }
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleFormSubmit}>
         <div className="formHeader">
           <h2>Sign In</h2>
