@@ -10,19 +10,6 @@ const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
-let buzzedIn = false
-
-io.on('connection', (socket) => {
-  console.log('a user connected')
-  socket.on('buzzed in', (user) => {
-    console.log(`${user} Buzzed In`)
-    if (!buzzedIn) {
-      //buzzedIn = true
-      io.emit('userBuzzedIn', { user })
-    }
-  })
-})
-
 
 app.use(express.static(join(__dirname, 'client', 'build'), {extensions: ['html'], dotfiles: 'allow' }))
 app.use(express.urlencoded({ extended: true }))
@@ -51,8 +38,11 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
   
-
+         
 require('./routes')(app)
+
+require('./socket')(io)
+
 
 require('mongoose').connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost:27017/trivia_time_with_michael', {
   useCreateIndex: true,
@@ -62,3 +52,4 @@ require('mongoose').connect(process.env.NODE_ENV === 'production' ? process.env.
 })
   .then(() => http.listen(process.env.PORT || 3001))
   .catch(e => console.log(e))
+

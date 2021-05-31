@@ -16,6 +16,9 @@ const TTWMApi = {
   emailAvailable: (user) => axios.post('/api/email', user),
   authorize: (token, email) => axios.post('/api/authorize', {email}, {
     headers: { 'Authorization': 'Bearer ' + token }
+  }),
+  authorizeAdmin: (token, email) => axios.post('/api/authorize/admin', {email}, {
+    headers: { 'Authorization': 'Bearer ' + token }
   })
 }
 

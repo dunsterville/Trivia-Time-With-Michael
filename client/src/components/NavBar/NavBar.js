@@ -11,8 +11,8 @@ const NavBar = _ => {
       <a href="./">Home</a>
       <a href="./standings">Standings</a>
       <p>About</p>
-      <button class="icon" id="hamburgerMenu">
-        <i class="fa fa-bars"></i>
+      <button className="icon" id="hamburgerMenu">
+        <i className="fa fa-bars"></i>
       </button>
     </nav>
   )

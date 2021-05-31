@@ -71,17 +71,34 @@ module.exports = app => {
       .then((err, user) => {
         if (err)  {
           if (err.email) {
-            res.json({ admin: err.admin})
+            res.json({ result: true, admin: err.admin})
           } else {
-            //console.log(err)
+            console.log('in err: ' + err)
             res.sendStatus(401)
           }
         } else {
-          //console.log(user)
+          console.log('in user: ' + user)
           res.sendStatus(401)
         }
       })
       .catch(err => console.error(err))
   })
 
+  // Check if Admin is authorized
+  app.post('/api/authorize/admin', passport.authenticate('jwt'), (req,res) => {
+    User.findOne({email: req.body.email})
+      .then((err, user) => {
+        if (err)  {
+          if (err.admin === true) {
+            res.sendStatus(200)
+          } else {
+            res.sendStatus(401)
+          }
+        } else {
+          console.log('in user: ' + user)
+          res.sendStatus(401)
+        }
+      })
+      .catch(err => console.error(err))
+  })
 }

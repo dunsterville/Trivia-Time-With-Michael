@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 // Pages
 import SignIn from './pages/SignIn'
@@ -8,6 +8,7 @@ import PageNotFound from './pages/PageNotFound'
 import Game from './pages/Game'
 import Standings from './pages/Standings'
 import Admin from './pages/Admin'
+import Logout from './pages/Logout'
 // Api
 import TTWMApi from './utils/TTWMApi'
 
@@ -15,22 +16,37 @@ const { authorize } = TTWMApi
 
 const App = () => {
 
-  //console.log(authorize(JSON.parse(sessionStorage.getItem('userInfo')).token))
-  const isAuthenticated = sessionStorage.getItem('userInfo') ? authorize(JSON.parse(sessionStorage.getItem('userInfo')).token, JSON.parse(sessionStorage.getItem('userInfo')).email) : false
-  const isAdmin = () => {
-    if (sessionStorage.getItem('userInfo')) {
-     authorize(JSON.parse(sessionStorage.getItem('userInfo')).token, JSON.parse(sessionStorage.getItem('userInfo')).email)
-      .then(({data}) => {
-        if (!data.admin) {
-          return false
-        } else {
-          return true
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState({
+    result: false,
+    admin: false
+  });
+
+  // const asyncCall = () => {
+  //   if (sessionStorage.getItem('userInfo')) {
+  //     const result = await authorize(JSON.parse(sessionStorage.getItem('userInfo')).token, JSON.parse(sessionStorage.getItem('userInfo')).email)
+  //       .then(({data}) => {
+  //         setIsAuthenticated({...isAuthenticated, result: data.result, admin: data.admin })
+  //       })
+  //       .catch(err => console.log(err))
+  //   }
+  // }
+
+  useEffect(() => {
+      const fetchData = async () => {
+        if (sessionStorage.getItem('userInfo')) {
+          await authorize(JSON.parse(sessionStorage.getItem('userInfo')).token, JSON.parse(sessionStorage.getItem('userInfo')).email)
+            .then(({data}) => {
+              setIsAuthenticated({...isAuthenticated, result: data.result, admin: data.admin })
+            })
+            .catch(err => console.log(err))
         }
-      })
-    } else {
-      return false
-    }
-  }
+      };
+      fetchData();
+  }, []);
+
+
+  //isAuthenticated()
 
   return (
     <Router>
@@ -44,24 +60,29 @@ const App = () => {
         <Route exact path="/signin">
           <SignIn />
         </Route>
-        <Route extact path="/stamdings">
+        <Route extact path="/standings">
           <Standings />
         </Route>
+        <Route extact path="/logout">
+          <Logout />
+        </Route>
         {
-          isAuthenticated ?
-          <>
+          isAuthenticated.admin ? (
+            <>
+              <Route exact path='/admin'>
+                <Admin />
+              </Route>
+              <Route exact path='/game'>
+                <Game />
+              </Route>
+            </>
+          ) : isAuthenticated.result ? (
             <Route exact path='/game'>
               <Game />
             </Route>
-            {
-              isAdmin ?
-              <>
-                <Route exact path='/admin'>
-                  <Admin />
-                </Route>
-              </> : <Redirect to='/game' />
-            }
-          </> : <Redirect to='/signin' />
+          ) : loading ? (
+            <div>LOADING...{setTimeout(()=>{setLoading(false)},1000)}</div>
+          ) : <Redirect to='/signin' />
         }
         <Route>
           <PageNotFound />
