@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import GameScreen from '../../components/GameScreen'
 // import UserContext from '../../utils/Usercontext'
-import io from 'socket.io-client'
+import { io } from 'socket.io-client'
 import NavBar from '../../components/NavBar'
 
 const socket = io()

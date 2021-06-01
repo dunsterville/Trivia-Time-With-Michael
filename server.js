@@ -9,13 +9,18 @@ const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 //const db = require('./config')
 const app = express()
 const http = require('http').Server(app)
-const io = require('socket.io')(http)
+const io = require('socket.io')(http, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+})
 
 // Uncomment on Production
-// app.enable('trust proxy')
-// app.use((req, res, next) => {
-//     req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
-// })
+app.enable('trust proxy')
+app.use((req, res, next) => {
+    req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
+})
 
 app.use(express.static(join(__dirname, 'client', 'build'), {extensions: ['html'], dotfiles: 'allow' }))
 app.use(express.urlencoded({ extended: true }))
