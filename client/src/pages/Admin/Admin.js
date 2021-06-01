@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 
-const socket = io.connect('https://dev.triviatimewithmichael.com/')
+const socket = io.connect('wss://dev.triviatimewithmichael.com/')
 
 const Admin = _ => {
 
