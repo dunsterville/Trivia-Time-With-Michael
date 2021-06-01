@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import NavBar from '../../components/NavBar'
 
-const socket = io.connect('wss://dev.triviatimewithmichael.com/')
+const socket = io()
 
 const Game = _ => {
 
