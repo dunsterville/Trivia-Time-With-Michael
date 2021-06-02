@@ -81,7 +81,7 @@ const App = () => {
               <Game />
             </Route>
           ) : loading ? (
-            <div>LOADING...{setTimeout(()=>{setLoading(false)},1000)}</div>
+            <div>LOADING...{/*setTimeout(()=>{setLoading(false)},1000)*/}</div>
           ) : <Redirect to='/signin' />
         }
         <Route>

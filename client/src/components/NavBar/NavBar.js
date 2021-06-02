@@ -26,8 +26,8 @@ const NavBar = _ => {
       <nav id="nav">
       <img src={shoverBenu} alt="hidden" className="hidden" />
         <div className="container">
-          <a href="/signin">Sign In</a>
-          <a href="/signup">Sign Up</a>
+          {(window.location.pathname === '/') ? <a href="/signin">Sign In</a> : ''}
+          {(window.location.pathname === '/')  ? <a href="/signup">Sign Up</a> : ''}
           {(window.location.pathname === '/game' || window.location.pathname === '/admin') ? <a href="/logout">Logout</a> : ''}
           <button onClick={handleToggleBurger} className="icon" id="hamburgerMenu">
             <span className="hamburger-text">🍔</span>

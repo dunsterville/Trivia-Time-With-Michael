@@ -4,6 +4,10 @@ module.exports = io => {
 
   io.on('connection', (socket) => {
 
+    socket.on('joining', (socketid) => {
+      io.to(socketid).emit('userJoined', { buzzedIn }, finishedQuestion)
+    })
+
     socket.on('updateQuestionStatus', ({questionStatus}) => {
       finishedQuestion = questionStatus
       buzzedIn = {}
